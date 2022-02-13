@@ -432,34 +432,21 @@
 
         function readTextFile(file, onDone) {
 
-            $.ajax({
-                url: file,
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                },
-                success: function(result) {
-                    console.log(result)
-                }
-            })
 
-
-            if (true == false) {
-
-                var rawFile = new XMLHttpRequest();
-                rawFile.open("GET", file, false);
-                rawFile.onreadystatechange = function() {
-                    if (rawFile.readyState === 4) {
-                        if (rawFile.status === 200 || rawFile.status == 0) {
-                            var allText = rawFile.responseText;
-                            onDone(allText)
-                        }
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function() {
+                if (rawFile.readyState === 4) {
+                    if (rawFile.status === 200 || rawFile.status == 0) {
+                        var allText = rawFile.responseText;
+                        onDone(allText)
                     }
                 }
-                rawFile.send(null);
-
-
-
             }
+            rawFile.send(null);
+
+
+
         }
         readTextFile(file2a, (text) => {
             let k = text.split('\n')
